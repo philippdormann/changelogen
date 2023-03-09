@@ -5,7 +5,7 @@ import type { ChangelogConfig } from "./config";
 import type { GitCommit, Reference } from "./git";
 import { formatReference, formatCompareChanges } from "./repo";
 
-export async function generateMarkDown(
+export function generateMarkDown(
   commits: GitCommit[],
   config: ChangelogConfig
 ) {
