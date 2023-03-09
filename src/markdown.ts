@@ -78,7 +78,7 @@ function formatCommit(commit: GitCommit, config: ChangelogConfig) {
     "  - " +
     (commit.scope ? `**${commit.scope.trim()}:** ` : "") +
     (commit.isBreaking ? "⚠️  " : "") +
-    upperFirst(commit.description) +
+    commit.description +
     formatReferences(commit.references, config)
   );
 }
