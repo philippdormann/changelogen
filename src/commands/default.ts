@@ -32,8 +32,7 @@ export default async function defaultMain(args: Argv) {
   // Parse commits as conventional commits
   const commits = parseCommits(rawCommits, config).filter(
     (c) =>
-      config.types[c.type] &&
-      !(c.type === "chore" && c.scope === "deps" && !c.isBreaking)
+      config.types[c.type]
   );
 
   // Bump version optionally
