@@ -75,12 +75,12 @@ export async function syncGithubRelease(
 ) {
   const currentGhRelease = await getGithubReleaseByTag(
     config,
-    `v${release.version}`
+    `${release.version}`
   ).catch(() => {});
 
   const ghRelease: GithubRelease = {
-    tag_name: `v${release.version}`,
-    name: `v${release.version}`,
+    tag_name: `${release.version}`,
+    name: `${release.version}`,
     body: release.body,
   };
 

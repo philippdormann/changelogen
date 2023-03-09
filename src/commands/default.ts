@@ -105,7 +105,7 @@ export default async function defaultMain(args: Argv) {
     if (args.tag !== false) {
       await execa(
         "git",
-        ["tag", "-am", "v" + config.newVersion, "v" + config.newVersion],
+        ["tag", "-am", config.newVersion, config.newVersion],
         { cwd }
       );
     }
