@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.5.2
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/0.5.1...0.5.2)
+
+
+### 🚀 Enhancements
+
+  - Resolve repository config from git remote ([8401f91](https://github.com/philippdormann/changelogen/commit/8401f91))
+
+### 🩹 Fixes
+
+  - Handle unset value for `config.repo` ([#72](https://github.com/philippdormann/changelogen/pull/72))
+
+### 💅 Refactors
+
+  - Drop contributors from changelog ([3e25803](https://github.com/philippdormann/changelogen/commit/3e25803))
+  - Drop v prefix from tags ([a5e9c92](https://github.com/philippdormann/changelogen/commit/a5e9c92))
+  - GenerateMarkDown is no longer async ([bf9c634](https://github.com/philippdormann/changelogen/commit/bf9c634))
+
+### 🏡 Chore
+
+  - Update badges and small improvements ([146d1d4](https://github.com/philippdormann/changelogen/commit/146d1d4))
+  - Change package name of fork ([9973cbe](https://github.com/philippdormann/changelogen/commit/9973cbe))
+  - Change package repo ([6a0f3f5](https://github.com/philippdormann/changelogen/commit/6a0f3f5))
+
+### ✅ Tests
+
+  - Remove test checking for contributors ([c23acf1](https://github.com/philippdormann/changelogen/commit/c23acf1))
+
+### 🎨 Styles
+
+  - Format code ([1f2f75c](https://github.com/philippdormann/changelogen/commit/1f2f75c))
+
 ## v0.5.1
 
 [compare changes](https://github.com/unjs/changelogen/compare/v0.5.0...v0.5.1)
