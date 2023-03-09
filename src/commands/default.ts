@@ -98,7 +98,7 @@ export default async function defaultMain(args: Argv) {
       await execa("git", ["add", ...filesToAdd], { cwd });
       await execa(
         "git",
-        ["commit", "-m", `chore(release): v${config.newVersion}`],
+        ["commit", "-m", `chore(release): ${config.newVersion}`],
         { cwd }
       );
     }
