@@ -31,8 +31,7 @@ export default async function defaultMain(args: Argv) {
 
   // Parse commits as conventional commits
   const commits = parseCommits(rawCommits, config).filter(
-    (c) =>
-      config.types[c.type]
+    (c) => config.types[c.type]
   );
 
   // Bump version optionally
