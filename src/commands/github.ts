@@ -120,8 +120,6 @@ export async function githubRelease(
         );
       });
   } else {
-    consola.success(
-      `Synced ${cyan(`${release.version}`)} to Github releases!`
-    );
+    consola.success(`Synced ${cyan(`${release.version}`)} to Github releases!`);
   }
 }

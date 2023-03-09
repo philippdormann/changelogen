@@ -103,11 +103,9 @@ export default async function defaultMain(args: Argv) {
       );
     }
     if (args.tag !== false) {
-      await execa(
-        "git",
-        ["tag", "-am", config.newVersion, config.newVersion],
-        { cwd }
-      );
+      await execa("git", ["tag", "-am", config.newVersion, config.newVersion], {
+        cwd,
+      });
     }
     if (args.push === true) {
       await execa("git", ["push", "--follow-tags"], { cwd });
