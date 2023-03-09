@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.5.3
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/0.5.2...0.5.3)
+
+
+### 💅 Refactors
+
+  - Drop v prefix from gh release ([e784e57](https://github.com/philippdormann/changelogen/commit/e784e57))
+  - Drop v prefix from commit message ([29cea81](https://github.com/philippdormann/changelogen/commit/29cea81))
+
 ## 0.5.2
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/0.5.1...0.5.2)
