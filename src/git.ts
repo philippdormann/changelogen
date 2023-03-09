@@ -112,7 +112,7 @@ export function parseGitCommit(
       description: commit.message,
       type: "other",
       scope: "",
-      references: [],
+      references: [{ value: commit.shortHash, type: "hash" }],
       isBreaking: commit.message.toLowerCase().includes("[breaking]"),
     };
   }
