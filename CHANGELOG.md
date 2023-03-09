@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.6.1
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/0.6.0...0.6.1)
+
+
+### 🎨 Styles
+
+  - code formatting ([4d0a67b](https://github.com/philippdormann/changelogen/commit/4d0a67b))
+
 ## 0.6.0
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/0.5.4...0.6.0)
