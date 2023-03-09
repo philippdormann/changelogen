@@ -13,7 +13,7 @@ export function determineSemverChange(
 ): SemverBumpType | null {
   let [hasMajor, hasMinor, hasPatch] = [false, false, false];
   for (const commit of commits) {
-    const semverType = config.types[commit.type]?.semver;
+    const semverType = config.types[commit?.type || "other"]?.semver;
     if (semverType === "major" || commit.isBreaking) {
       hasMajor = true;
     } else if (semverType === "minor") {

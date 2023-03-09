@@ -87,9 +87,8 @@ export function parseCommits(
   commits: RawGitCommit[],
   config: ChangelogConfig
 ): GitCommit[] {
-  return commits
-    .map((commit) => parseGitCommit(commit, config))
-    .filter(Boolean);
+  return commits.map((commit) => parseGitCommit(commit, config));
+  // .filter(Boolean);
 }
 
 // https://www.conventionalcommits.org/en/v1.0.0/
@@ -106,7 +105,16 @@ export function parseGitCommit(
 ): GitCommit | null {
   const match = commit.message.match(ConventionalCommitRegex);
   if (!match) {
-    return null;
+    // non-conventional commit
+    return {
+      ...commit,
+      authors: [commit.author],
+      description: commit.message,
+      type: "other",
+      scope: "",
+      references: [],
+      isBreaking: commit.message.toLowerCase().includes("[breaking]"),
+    };
   }
 
   const type = match.groups.type;
