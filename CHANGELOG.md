@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.7.1
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/0.7.0...0.7.1)
+
+
+### 🩹 Fixes
+
+  - nonconventional commits should include commit hash ([1cb0f3d](https://github.com/philippdormann/changelogen/commit/1cb0f3d))
+
 ## 0.7.0
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/0.6.1...0.7.0)
