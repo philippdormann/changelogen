@@ -112,9 +112,9 @@ export function githubNewReleaseURL(
   config: ChangelogConfig,
   release: { version: string; body: string }
 ) {
-  return `https://${config.repo.domain}/${config.repo.repo}/releases/new?tag=v${
+  return `https://${config.repo.domain}/${config.repo.repo}/releases/new?tag=${
     release.version
-  }&title=v${release.version}&body=${encodeURIComponent(release.body)}`;
+  }&title=${release.version}&body=${encodeURIComponent(release.body)}`;
 }
 
 export async function resolveGithubToken(config: ChangelogConfig) {
