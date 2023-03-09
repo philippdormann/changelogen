@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.5.4
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/0.5.3...0.5.4)
+
+
+### 💅 Refactors
+
+  - keep original commit description capitalization ([f909e3c](https://github.com/philippdormann/changelogen/commit/f909e3c))
+
 ## 0.5.3
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/0.5.2...0.5.3)
