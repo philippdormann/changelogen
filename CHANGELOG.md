@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.6.0
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/0.5.4...0.6.0)
+
+
+### 💅 Refactors
+
+  - ⚠️  dont ignore chore(deps) ([cfbb1c5](https://github.com/philippdormann/changelogen/commit/cfbb1c5))
+
+#### ⚠️  Breaking Changes
+
+  - ⚠️  dont ignore chore(deps) ([cfbb1c5](https://github.com/philippdormann/changelogen/commit/cfbb1c5))
+
 ## 0.5.4
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/0.5.3...0.5.4)
