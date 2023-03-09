@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.7.0
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/0.6.1...0.7.0)
+
+
+### 🚀 Enhancements
+
+  - ⚠️  introduce "other" commit type for non-conventional commits ([867651c](https://github.com/philippdormann/changelogen/commit/867651c))
+  - **parsing:** non-conventional commits parsed as "other" ([9e57adb](https://github.com/philippdormann/changelogen/commit/9e57adb))
+
+#### ⚠️  Breaking Changes
+
+  - ⚠️  introduce "other" commit type for non-conventional commits ([867651c](https://github.com/philippdormann/changelogen/commit/867651c))
+
 ## 0.6.1
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/0.6.0...0.6.1)
