@@ -31,6 +31,7 @@ const getDefaultConfig = () =>
       examples: { title: "🏀 Examples" },
       test: { title: "✅ Tests" },
       style: { title: "🎨 Styles" },
+      other: { title: "🤷‍♂️ Other" },
       ci: { title: "🤖 CI" },
     },
     cwd: null,

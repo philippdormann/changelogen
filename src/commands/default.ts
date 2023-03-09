@@ -30,9 +30,7 @@ export default async function defaultMain(args: Argv) {
   const rawCommits = await getGitDiff(config.from, config.to);
 
   // Parse commits as conventional commits
-  const commits = parseCommits(rawCommits, config).filter(
-    (c) => config.types[c.type]
-  );
+  const commits = parseCommits(rawCommits, config);
 
   // Bump version optionally
   if (args.bump || args.release) {
