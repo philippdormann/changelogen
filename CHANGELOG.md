@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.7.6
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/0.7.5...0.7.6)
+
+### 🩹 Fixes
+
+- ignore chore-release ([ff061b4](https://github.com/philippdormann/changelogen/commit/ff061b4))
+- ignore chore-release ([bcbc1ae](https://github.com/philippdormann/changelogen/commit/bcbc1ae))
+
+### 📦 Build
+
+- add github release auto-open ([3835522](https://github.com/philippdormann/changelogen/commit/3835522))
+
 ## 0.7.5
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/v0.7.4...0.7.5)
