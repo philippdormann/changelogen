@@ -1,6 +1,4 @@
-import { upperFirst } from "scule";
 import { convert } from "convert-gitmoji";
-import { fetch } from "node-fetch-native";
 import type { ChangelogConfig } from "./config";
 import type { GitCommit, Reference } from "./git";
 import { formatReference, formatCompareChanges } from "./repo";
@@ -15,11 +13,11 @@ export function generateMarkDown(
   const breakingChanges = [];
 
   // Version Title
-  const v = config.newVersion && `${config.newVersion}`;
-  markdown.push("", "## " + (v || `${config.from}...${config.to}`), "");
+  const v = config.newVersion && `v${config.newVersion}`;
+  markdown.push("", "## " + (v || `${config.from || ""}...${config.to}`), "");
 
-  if (config.repo) {
-    markdown.push(formatCompareChanges(v, config), "");
+  if (config.repo && config.from) {
+    markdown.push(formatCompareChanges(v, config));
   }
 
   for (const type in config.types) {
@@ -75,7 +73,7 @@ export function parseChangelogMarkdown(contents: string) {
 
 function formatCommit(commit: GitCommit, config: ChangelogConfig) {
   return (
-    "  - " +
+    "- " +
     (commit.scope ? `**${commit.scope.trim()}:** ` : "") +
     (commit.isBreaking ? "⚠️  " : "") +
     commit.description +
@@ -99,17 +97,6 @@ function formatReferences(references: Reference[], config: ChangelogConfig) {
     return " (" + formatReference(references[0], config.repo) + ")";
   }
   return "";
-}
-
-// function formatTitle (title: string = '') {
-//   return title.length <= 3 ? title.toUpperCase() : upperFirst(title)
-// }
-
-function formatName(name = "") {
-  return name
-    .split(" ")
-    .map((p) => upperFirst(p.trim()))
-    .join(" ");
 }
 
 function groupBy(items: any[], key: string) {

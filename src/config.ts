@@ -15,6 +15,11 @@ export interface ChangelogConfig {
   to: string;
   newVersion?: string;
   output: string | boolean;
+  templates: {
+    commitMessage?: string;
+    tagMessage?: string;
+    tagBody?: string;
+  };
 }
 
 const getDefaultConfig = () =>
@@ -45,6 +50,11 @@ const getDefaultConfig = () =>
         process.env.GITHUB_TOKEN ||
         process.env.GH_TOKEN,
     },
+    templates: {
+      commitMessage: "chore(release): v{{newVersion}}",
+      tagMessage: "v{{newVersion}}",
+      tagBody: "v{{newVersion}}",
+    },
   };
 
 export async function loadChangelogConfig(
@@ -56,6 +66,7 @@ export async function loadChangelogConfig(
   const { config } = await loadConfig<ChangelogConfig>({
     cwd,
     name: "changelog",
+    packageJson: true,
     defaults,
     overrides: {
       cwd,

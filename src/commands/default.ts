@@ -9,6 +9,7 @@ import {
   parseCommits,
   bumpVersion,
   generateMarkDown,
+  BumpVersionOptions,
 } from "..";
 import { githubRelease } from "./github";
 
@@ -25,7 +26,7 @@ export default async function defaultMain(args: Argv) {
   });
 
   const logger = consola.create({ stdout: process.stderr });
-  logger.info(`Generating changelog for ${config.from}...${config.to}`);
+  logger.info(`Generating changelog for ${config.from || ""}...${config.to}`);
 
   const rawCommits = await getGitDiff(config.from, config.to);
 
@@ -34,15 +35,8 @@ export default async function defaultMain(args: Argv) {
 
   // Bump version optionally
   if (args.bump || args.release) {
-    let type;
-    if (args.major) {
-      type = "major";
-    } else if (args.minor) {
-      type = "minor";
-    } else if (args.patch) {
-      type = "patch";
-    }
-    const newVersion = await bumpVersion(commits, config, { type });
+    const bumpOptions = _getBumpVersionOptions(args);
+    const newVersion = await bumpVersion(commits, config, bumpOptions);
     if (!newVersion) {
       consola.error("Unable to bump version based on changes.");
       process.exit(1);
@@ -92,16 +86,22 @@ export default async function defaultMain(args: Argv) {
         (f) => f && typeof f === "string"
       ) as string[];
       await execa("git", ["add", ...filesToAdd], { cwd });
-      await execa(
-        "git",
-        ["commit", "-m", `chore(release): ${config.newVersion}`],
-        { cwd }
+      const msg = config.templates.commitMessage.replaceAll(
+        "{{newVersion}}",
+        config.newVersion
       );
+      await execa("git", ["commit", "-m", msg], { cwd });
     }
     if (args.tag !== false) {
-      await execa("git", ["tag", "-am", config.newVersion, config.newVersion], {
-        cwd,
-      });
+      const msg = config.templates.tagMessage.replaceAll(
+        "{{newVersion}}",
+        config.newVersion
+      );
+      const body = config.templates.tagBody.replaceAll(
+        "{{newVersion}}",
+        config.newVersion
+      );
+      await execa("git", ["tag", "-am", msg, body], { cwd });
     }
     if (args.push === true) {
       await execa("git", ["push", "--follow-tags"], { cwd });
@@ -111,6 +111,31 @@ export default async function defaultMain(args: Argv) {
         version: config.newVersion,
         body: markdown.split("\n").slice(2).join("\n"),
       });
+    }
+  }
+}
+
+function _getBumpVersionOptions(args: Argv): BumpVersionOptions {
+  for (const type of [
+    "major",
+    "premajor",
+    "minor",
+    "preminor",
+    "patch",
+    "prepatch",
+    "prerelease",
+  ] as const) {
+    const value = args[type];
+    if (value) {
+      if (type.startsWith("pre")) {
+        return {
+          type,
+          preid: typeof value === "string" ? value : "",
+        };
+      }
+      return {
+        type,
+      };
     }
   }
 }
