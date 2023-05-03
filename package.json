@@ -40,7 +40,6 @@
     "mri": "^1.2.0",
     "node-fetch-native": "^1.1.0",
     "ofetch": "^1.0.1",
-    "open": "^8.4.2",
     "pathe": "^1.1.0",
     "pkg-types": "^1.0.3",
     "scule": "^1.0.0",

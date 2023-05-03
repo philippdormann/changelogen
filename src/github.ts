@@ -1,7 +1,4 @@
-import { existsSync, promises as fsp } from "node:fs";
-import { homedir } from "node:os";
 import { $fetch, FetchOptions } from "ofetch";
-import { join } from "pathe";
 import { ChangelogConfig } from "./config";
 
 export interface GithubOptions {
@@ -69,45 +66,6 @@ export async function updateGithubRelease(
   );
 }
 
-export async function syncGithubRelease(
-  config: ChangelogConfig,
-  release: { version: string; body: string }
-) {
-  const currentGhRelease = await getGithubReleaseByTag(
-    config,
-    `${release.version}`
-  ).catch(() => {});
-
-  const ghRelease: GithubRelease = {
-    tag_name: `${release.version}`,
-    name: `${release.version}`,
-    body: release.body,
-  };
-
-  if (!config.tokens.github) {
-    return {
-      status: "manual",
-      url: githubNewReleaseURL(config, release),
-    };
-  }
-
-  try {
-    const newGhRelease = await (currentGhRelease
-      ? updateGithubRelease(config, currentGhRelease.id, ghRelease)
-      : createGithubRelease(config, ghRelease));
-    return {
-      status: currentGhRelease ? "updated" : "created",
-      id: newGhRelease.id,
-    };
-  } catch (error) {
-    return {
-      status: "manual",
-      error,
-      url: githubNewReleaseURL(config, release),
-    };
-  }
-}
-
 export function githubNewReleaseURL(
   config: ChangelogConfig,
   release: { version: string; body: string }
@@ -115,27 +73,6 @@ export function githubNewReleaseURL(
   return `https://${config.repo.domain}/${config.repo.repo}/releases/new?tag=${
     release.version
   }&title=${release.version}&body=${encodeURIComponent(release.body)}`;
-}
-
-export async function resolveGithubToken(config: ChangelogConfig) {
-  const env =
-    process.env.CHANGELOGEN_TOKENS_GITHUB ||
-    process.env.GITHUB_TOKEN ||
-    process.env.GH_TOKEN;
-  if (env) {
-    return env;
-  }
-
-  const configHome = process.env.XDG_CONFIG_HOME || join(homedir(), ".config");
-  const ghCLIPath = join(configHome, "gh", "hosts.yml");
-  if (existsSync(ghCLIPath)) {
-    const yamlContents = await fsp.readFile(ghCLIPath, "utf8");
-    const parseYAML = await import("yaml").then((r) => r.parse);
-    const ghCLIConfig = parseYAML(yamlContents);
-    if (ghCLIConfig && ghCLIConfig[config.repo.domain]) {
-      return ghCLIConfig["github.com"].oauth_token;
-    }
-  }
 }
 
 // --- Internal utils ---

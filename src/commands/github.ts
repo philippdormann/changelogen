@@ -1,14 +1,9 @@
 import { promises as fsp } from "node:fs";
 import type { Argv } from "mri";
-import { openApp } from "open";
 import { resolve } from "pathe";
 import consola from "consola";
 import { underline, cyan } from "colorette";
-import {
-  getGithubChangelog,
-  resolveGithubToken,
-  syncGithubRelease,
-} from "../github";
+import { getGithubChangelog, githubNewReleaseURL } from "../github";
 import {
   ChangelogConfig,
   loadChangelogConfig,
@@ -86,40 +81,21 @@ export default async function githubMain(args: Argv) {
       );
       continue;
     }
-    await githubRelease(config, {
+    githubRelease(config, {
       version: release.version,
       body: release.body,
     });
   }
 }
 
-export async function githubRelease(
+export function githubRelease(
   config: ChangelogConfig,
   release: { version: string; body: string }
 ) {
-  if (!config.tokens.github) {
-    config.tokens.github = await resolveGithubToken(config).catch(
-      () => undefined
-    );
-  }
-  const result = await syncGithubRelease(config, release);
-  if (result.status === "manual") {
-    if (result.error) {
-      consola.error(result.error);
-      process.exitCode = 1;
-    }
-    await openApp(result.url)
-      .then(() => {
-        consola.info(`Followup in the browser to manually create the release.`);
-      })
-      .catch(() => {
-        consola.info(
-          `Open this link to manually create a release: \n` +
-            underline(cyan(result.url)) +
-            "\n"
-        );
-      });
-  } else {
-    consola.success(`Synced ${cyan(`${release.version}`)} to Github releases!`);
-  }
+  const url = githubNewReleaseURL(config, release);
+  consola.info(
+    `Open this link to manually create a release: \n` +
+      underline(cyan(url)) +
+      "\n"
+  );
 }
