@@ -32,7 +32,7 @@ export default async function defaultMain(args: Argv) {
 
   // Parse commits as conventional commits
   const commits = parseCommits(rawCommits, config).filter(
-    (c) => c.type === "chore" && c.scope === "release"
+    (c) => !(c.type === "chore" && c.scope === "release")
   );
 
   // Bump version optionally
