@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## v0.7.4
+## 0.7.4
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/v0.7.3...v0.7.4)
 
@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 - drop github auto open in favor of url log ([e5f0a60](https://github.com/philippdormann/changelogen/commit/e5f0a60))
 
-## v0.7.3
+## 0.7.3
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/v0.7.2...v0.7.3)
 
@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 - github open after release ([3dd6755](https://github.com/philippdormann/changelogen/commit/3dd6755))
 
-## v0.7.2
+## 0.7.2
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/0.7.1...v0.7.2)
 
