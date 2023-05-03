@@ -1,4 +1,5 @@
 import { promises as fsp } from "node:fs";
+import open from "open";
 import type { Argv } from "mri";
 import { resolve } from "pathe";
 import consola from "consola";
@@ -93,6 +94,7 @@ export function githubRelease(
   release: { version: string; body: string }
 ) {
   const url = githubNewReleaseURL(config, release);
+  open(url);
   consola.info(
     `Open this link to manually create a release: \n` +
       underline(cyan(url)) +
