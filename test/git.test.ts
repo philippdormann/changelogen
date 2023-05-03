@@ -1,12 +1,5 @@
 import { describe, expect, test } from "vitest";
-import {
-  generateMarkDown,
-  getGitDiff,
-  loadChangelogConfig,
-  parseCommits,
-  getRepoConfig,
-  formatReference,
-} from "../src";
+import { getGitDiff, getRepoConfig, formatReference } from "../src";
 import { RepoConfig } from "./../src/repo";
 
 describe("git", () => {
