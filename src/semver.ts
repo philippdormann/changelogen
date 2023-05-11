@@ -44,7 +44,7 @@ export async function bumpVersion(
   config: ChangelogConfig,
   opts: BumpVersionOptions = {}
 ): Promise<string | false> {
-  let type = opts.type || determineSemverChange(commits, config) || "patch";
+  const type = opts.type || determineSemverChange(commits, config) || "patch";
   const originalType = type;
 
   const pkgPath = resolve(config.cwd, "package.json");
