@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.0.0
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/0.7.6...1.0.0)
+
+### 🩹 Fixes
+
+- **semver:** ⚠️  allow for major releases ([d8757e0](https://github.com/philippdormann/changelogen/commit/d8757e0))
+
+### 🎨 Styles
+
+- lint fix ([faacf99](https://github.com/philippdormann/changelogen/commit/faacf99))
+
+#### ⚠️  Breaking Changes
+
+- **semver:** ⚠️  allow for major releases ([d8757e0](https://github.com/philippdormann/changelogen/commit/d8757e0))
+
 ## 0.7.6
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/0.7.5...0.7.6)
