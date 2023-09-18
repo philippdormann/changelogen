@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.0
+
+[compare changes](https://github.com/philippdormann/changelogen/compare/1.0.0...2.0.0)
+
+### 🏡 Chore
+
+- **deps:** ⚠️  bump all ([1735782](https://github.com/philippdormann/changelogen/commit/1735782))
+
+#### ⚠️  Breaking Changes
+
+- **deps:** ⚠️  bump all ([1735782](https://github.com/philippdormann/changelogen/commit/1735782))
+
 ## 1.0.0
 
 [compare changes](https://github.com/philippdormann/changelogen/compare/0.7.6...1.0.0)
