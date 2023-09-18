@@ -5,7 +5,7 @@ import { formatReference, formatCompareChanges } from "./repo";
 
 export function generateMarkDown(
   commits: GitCommit[],
-  config: ChangelogConfig
+  config: ChangelogConfig,
 ) {
   const typeGroups = groupBy(commits, "type");
 
@@ -57,7 +57,7 @@ export function parseChangelogMarkdown(contents: string) {
       body: contents
         .slice(
           heading.index + heading[0].length,
-          nextHeading?.index ?? contents.length
+          nextHeading?.index ?? contents.length,
         )
         .trim(),
     };

@@ -6,7 +6,7 @@ describe("markdown", () => {
   test("should parse markdown", async () => {
     const contents = await fsp.readFile(
       new URL("fixtures/CHANGELOG.md", import.meta.url),
-      "utf8"
+      "utf8",
     );
     expect(parseChangelogMarkdown(contents)).toMatchInlineSnapshot(`
       {

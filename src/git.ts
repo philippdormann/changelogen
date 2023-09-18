@@ -30,7 +30,7 @@ export async function getLastGitTag() {
   const r = await execCommand("git", ["describe", "--tags", "--abbrev=0"])
     .then((r) => r.split("\n"))
     .catch(() => []);
-  return r[r.length - 1];
+  return r.at(-1);
 }
 
 export async function getCurrentGitBranch() {
@@ -56,7 +56,7 @@ export async function getGitRemoteURL(cwd: string, remote = "origin") {
 
 export async function getGitDiff(
   from: string | undefined,
-  to = "HEAD"
+  to = "HEAD",
 ): Promise<RawGitCommit[]> {
   // https://git-scm.com/docs/pretty-formats
   const r = await execCommand("git", [
@@ -85,7 +85,7 @@ export async function getGitDiff(
 
 export function parseCommits(
   commits: RawGitCommit[],
-  config: ChangelogConfig
+  config: ChangelogConfig,
 ): GitCommit[] {
   return commits.map((commit) => parseGitCommit(commit, config));
   // .filter(Boolean);
@@ -101,7 +101,7 @@ const IssueRE = /(#\d+)/gm;
 
 export function parseGitCommit(
   commit: RawGitCommit,
-  config: ChangelogConfig
+  config: ChangelogConfig,
 ): GitCommit | null {
   const match = commit.message.match(ConventionalCommitRegex);
   if (!match) {

@@ -10,7 +10,7 @@ describe("git", () => {
 
     const all = await getGitDiff(undefined);
     expect((await getGitDiff(COMMIT_INITIAL, "HEAD")).length + 1).toBe(
-      all.length
+      all.length,
     );
   });
 
@@ -27,13 +27,13 @@ describe("git", () => {
     expect(getRepoConfig("unjs/changelogen")).toStrictEqual(github);
     expect(getRepoConfig("github:unjs/changelogen")).toStrictEqual(github);
     expect(getRepoConfig("https://github.com/unjs/changelogen")).toStrictEqual(
-      github
+      github,
     );
     expect(
-      getRepoConfig("https://github.com/unjs/changelogen.git")
+      getRepoConfig("https://github.com/unjs/changelogen.git"),
     ).toStrictEqual(github);
     expect(getRepoConfig("git@github.com:unjs/changelogen.git")).toStrictEqual(
-      github
+      github,
     );
 
     const gitlab = {
@@ -44,13 +44,13 @@ describe("git", () => {
 
     expect(getRepoConfig("gitlab:unjs/changelogen")).toStrictEqual(gitlab);
     expect(getRepoConfig("https://gitlab.com/unjs/changelogen")).toStrictEqual(
-      gitlab
+      gitlab,
     );
     expect(
-      getRepoConfig("https://gitlab.com/unjs/changelogen.git")
+      getRepoConfig("https://gitlab.com/unjs/changelogen.git"),
     ).toStrictEqual(gitlab);
     expect(getRepoConfig("git@gitlab.com:unjs/changelogen.git")).toStrictEqual(
-      gitlab
+      gitlab,
     );
 
     const bitbucket = {
@@ -60,19 +60,19 @@ describe("git", () => {
     };
 
     expect(getRepoConfig("bitbucket:unjs/changelogen")).toStrictEqual(
-      bitbucket
+      bitbucket,
     );
     expect(
-      getRepoConfig("https://bitbucket.org/unjs/changelogen")
+      getRepoConfig("https://bitbucket.org/unjs/changelogen"),
     ).toStrictEqual(bitbucket);
     expect(
-      getRepoConfig("https://bitbucket.org/unjs/changelogen.git")
+      getRepoConfig("https://bitbucket.org/unjs/changelogen.git"),
     ).toStrictEqual(bitbucket);
     expect(
-      getRepoConfig("https://donaldsh@bitbucket.org/unjs/changelogen.git")
+      getRepoConfig("https://donaldsh@bitbucket.org/unjs/changelogen.git"),
     ).toStrictEqual(bitbucket);
     expect(
-      getRepoConfig("git@bitbucket.org:unjs/changelogen.git")
+      getRepoConfig("git@bitbucket.org:unjs/changelogen.git"),
     ).toStrictEqual(bitbucket);
 
     const selfhosted = {
@@ -86,24 +86,24 @@ describe("git", () => {
     });
 
     expect(getRepoConfig("https://git.unjs.io/unjs/changelogen")).toMatchObject(
-      selfhosted
+      selfhosted,
     );
 
     expect(
-      getRepoConfig("https://git.unjs.io/unjs/changelogen.git")
+      getRepoConfig("https://git.unjs.io/unjs/changelogen.git"),
     ).toMatchObject(selfhosted);
     expect(
-      getRepoConfig("https://donaldsh@git.unjs.io/unjs/changelogen.git")
+      getRepoConfig("https://donaldsh@git.unjs.io/unjs/changelogen.git"),
     ).toMatchObject(selfhosted);
     expect(getRepoConfig("git@git.unjs.io:unjs/changelogen.git")).toMatchObject(
-      selfhosted
+      selfhosted,
     );
   });
 
   test("format reference", () => {
     expect(formatReference({ type: "hash", value: "3828bda" })).toBe("3828bda");
     expect(formatReference({ type: "pull-request", value: "#123" })).toBe(
-      "#123"
+      "#123",
     );
     expect(formatReference({ type: "issue", value: "#14" })).toBe("#14");
 
@@ -114,13 +114,13 @@ describe("git", () => {
     };
 
     expect(formatReference({ type: "hash", value: "3828bda" }, github)).toBe(
-      "[3828bda](https://github.com/unjs/changelogen/commit/3828bda)"
+      "[3828bda](https://github.com/unjs/changelogen/commit/3828bda)",
     );
     expect(
-      formatReference({ type: "pull-request", value: "#123" }, github)
+      formatReference({ type: "pull-request", value: "#123" }, github),
     ).toBe("[#123](https://github.com/unjs/changelogen/pull/123)");
     expect(formatReference({ type: "issue", value: "#14" }, github)).toBe(
-      "[#14](https://github.com/unjs/changelogen/issues/14)"
+      "[#14](https://github.com/unjs/changelogen/issues/14)",
     );
 
     const gitlab: RepoConfig = {
@@ -130,13 +130,13 @@ describe("git", () => {
     };
 
     expect(formatReference({ type: "hash", value: "3828bda" }, gitlab)).toBe(
-      "[3828bda](https://gitlab.com/unjs/changelogen/commit/3828bda)"
+      "[3828bda](https://gitlab.com/unjs/changelogen/commit/3828bda)",
     );
     expect(
-      formatReference({ type: "pull-request", value: "#123" }, gitlab)
+      formatReference({ type: "pull-request", value: "#123" }, gitlab),
     ).toBe("[#123](https://gitlab.com/unjs/changelogen/merge_requests/123)");
     expect(formatReference({ type: "issue", value: "#14" }, gitlab)).toBe(
-      "[#14](https://gitlab.com/unjs/changelogen/issues/14)"
+      "[#14](https://gitlab.com/unjs/changelogen/issues/14)",
     );
 
     const bitbucket: RepoConfig = {
@@ -146,13 +146,13 @@ describe("git", () => {
     };
 
     expect(formatReference({ type: "hash", value: "3828bda" }, bitbucket)).toBe(
-      "[3828bda](https://bitbucket.org/unjs/changelogen/commit/3828bda)"
+      "[3828bda](https://bitbucket.org/unjs/changelogen/commit/3828bda)",
     );
     expect(
-      formatReference({ type: "pull-request", value: "#123" }, bitbucket)
+      formatReference({ type: "pull-request", value: "#123" }, bitbucket),
     ).toBe("[#123](https://bitbucket.org/unjs/changelogen/pull-requests/123)");
     expect(formatReference({ type: "issue", value: "#14" }, bitbucket)).toBe(
-      "[#14](https://bitbucket.org/unjs/changelogen/issues/14)"
+      "[#14](https://bitbucket.org/unjs/changelogen/issues/14)",
     );
 
     const unkown: RepoConfig = {
@@ -161,13 +161,13 @@ describe("git", () => {
     };
 
     expect(formatReference({ type: "hash", value: "3828bda" }, unkown)).toBe(
-      "3828bda"
+      "3828bda",
     );
     expect(
-      formatReference({ type: "pull-request", value: "#123" }, unkown)
+      formatReference({ type: "pull-request", value: "#123" }, unkown),
     ).toBe("#123");
     expect(formatReference({ type: "issue", value: "#14" }, unkown)).toBe(
-      "#14"
+      "#14",
     );
   });
 });

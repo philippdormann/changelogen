@@ -16,7 +16,7 @@ export type SemverBumpType =
 
 export function determineSemverChange(
   commits: GitCommit[],
-  config: ChangelogConfig
+  config: ChangelogConfig,
 ): SemverBumpType | null {
   let [hasMajor, hasMinor, hasPatch] = [false, false, false];
   for (const commit of commits) {
@@ -42,7 +42,7 @@ export type BumpVersionOptions = {
 export async function bumpVersion(
   commits: GitCommit[],
   config: ChangelogConfig,
-  opts: BumpVersionOptions = {}
+  opts: BumpVersionOptions = {},
 ): Promise<string | false> {
   const type = opts.type || determineSemverChange(commits, config) || "patch";
   const originalType = type;
@@ -72,7 +72,7 @@ export async function bumpVersion(
   }
 
   consola.info(
-    `Bumping version from ${currentVersion} to ${pkg.version} (${originalType})`
+    `Bumping version from ${currentVersion} to ${pkg.version} (${originalType})`,
   );
   await writePackageJSON(pkgPath, pkg);
 

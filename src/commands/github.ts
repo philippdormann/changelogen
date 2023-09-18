@@ -18,7 +18,7 @@ export default async function githubMain(args: Argv) {
   const [subCommand, ..._versions] = args._;
   if (subCommand !== "release") {
     consola.log(
-      "Usage: changelogen gh release [all|versions...] [--dir] [--token]"
+      "Usage: changelogen gh release [all|versions...] [--dir] [--token]",
     );
     process.exit(1);
   }
@@ -27,7 +27,7 @@ export default async function githubMain(args: Argv) {
 
   if (config.repo?.provider !== "github") {
     consola.error(
-      "This command is only supported for github repository provider."
+      "This command is only supported for github repository provider.",
     );
     process.exit(1);
   }
@@ -72,13 +72,13 @@ export default async function githubMain(args: Argv) {
     const release = changelogReleases.find((r) => r.version === version);
     if (!release) {
       consola.warn(
-        `No matching changelog entry found for ${version} in CHANGELOG.md. Skipping!`
+        `No matching changelog entry found for ${version} in CHANGELOG.md. Skipping!`,
       );
       continue;
     }
     if (!release.body || !release.version) {
       consola.warn(
-        `Changelog entry for ${version} in CHANGELOG.md is missing body or version. Skipping!`
+        `Changelog entry for ${version} in CHANGELOG.md is missing body or version. Skipping!`,
       );
       continue;
     }
@@ -91,13 +91,13 @@ export default async function githubMain(args: Argv) {
 
 export function githubRelease(
   config: ChangelogConfig,
-  release: { version: string; body: string }
+  release: { version: string; body: string },
 ) {
   const url = githubNewReleaseURL(config, release);
   open(url);
   consola.info(
     `Open this link to manually create a release: \n` +
       underline(cyan(url)) +
-      "\n"
+      "\n",
   );
 }

@@ -32,7 +32,7 @@ export default async function defaultMain(args: Argv) {
 
   // Parse commits as conventional commits
   const commits = parseCommits(rawCommits, config).filter(
-    (c) => !(c.type === "chore" && c.scope === "release")
+    (c) => !(c.type === "chore" && c.scope === "release"),
   );
 
   // Bump version optionally
@@ -85,23 +85,23 @@ export default async function defaultMain(args: Argv) {
   if (args.release) {
     if (args.commit !== false) {
       const filesToAdd = [config.output, "package.json"].filter(
-        (f) => f && typeof f === "string"
+        (f) => f && typeof f === "string",
       ) as string[];
       await execa("git", ["add", ...filesToAdd], { cwd });
       const msg = config.templates.commitMessage.replaceAll(
         "{{newVersion}}",
-        config.newVersion
+        config.newVersion,
       );
       await execa("git", ["commit", "-m", msg], { cwd });
     }
     if (args.tag !== false) {
       const msg = config.templates.tagMessage.replaceAll(
         "{{newVersion}}",
-        config.newVersion
+        config.newVersion,
       );
       const body = config.templates.tagBody.replaceAll(
         "{{newVersion}}",
-        config.newVersion
+        config.newVersion,
       );
       await execa("git", ["tag", "-am", msg, body], { cwd });
     }

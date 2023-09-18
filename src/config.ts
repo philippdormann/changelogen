@@ -59,7 +59,7 @@ const getDefaultConfig = () =>
 
 export async function loadChangelogConfig(
   cwd: string,
-  overrides?: Partial<ChangelogConfig>
+  overrides?: Partial<ChangelogConfig>,
 ): Promise<ChangelogConfig> {
   await setupDotenv({ cwd });
   const defaults = getDefaultConfig();
